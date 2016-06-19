@@ -16,13 +16,19 @@
         <many-to-one name="proteinData" class="com.simpleprogram.ProteinData" column="protein_data_id" cascade="save-update"/>
 
         <list name="history" table="user_history" inverse="true" cascade="save-update">
-
-
             <key column="user_id"/>
             <list-index column="POSITION"/>
             <one-to-many class="com.simpleprogram.UserHistory"/>
         </list>
-
+    <join table="user_goalAlert" optional="true">
+        <key column="user_id"></key>
+        <many-to-one name="goalAlert"
+        column="goalAlert_id"
+        not-null="true"
+        unique="true"
+        cascade="save-update"
+        />
+    </join>
         <!--V2-->
         <!--<map name="history" table="user_history">-->
             <!--<key column="id"/>-->

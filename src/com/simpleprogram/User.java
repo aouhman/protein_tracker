@@ -8,6 +8,15 @@ public class User extends Object {
     private String name;
 
     private ProteinData proteinData = new ProteinData();
+    private GoalAlert goalAlert;
+
+    public GoalAlert getGoalAlert() {
+        return goalAlert;
+    }
+
+    public void setGoalAlert(GoalAlert goalAlert) {
+        this.goalAlert = goalAlert;
+    }
 
     public User(){
         setProteinData(new ProteinData());
