@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.simpleprogram.User" table="users">
+        <id name="id">
+            <column name="id" sql-type="int(11)" />
+            <generator class="identity"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(100)" length="100"/>
+        </property>
+        <component name="proteinData">
+
+            <property name="total">
+                <column name="total" sql-type="int(11)"/>
+            </property>
+            <property name="goal">
+                <column name="goal" sql-type="int(11)"/>
+            </property>
+        </component>
+
+
+        <idbag name="history" table="user_history">
+
+            <collection-id type="int" column="id">
+                <generator class="increment"/>
+            </collection-id>
+            <key column="user_id"/>
+            <composite-element class="com.simpleprogram.UserHistory">
+                <property name="entryTime" type="date" column="ENTRY_TIME"/>
+                <property name="entry" type="java.lang.String" column="ENTRY"/>
+            </composite-element>
+        </idbag>
+
+        <!--V2-->
+        <!--<map name="history" table="user_history">-->
+            <!--<key column="id"/>-->
+            <!--<map-key type="string" column="ENTRY_IDENTIFIER"></map-key>-->
+            <!--<composite-element class="com.simpleprogram.UserHistory">-->
+                <!--<property name="entryTime" type="date" column="ENTRY_TIME"/>-->
+                <!--<property name="entry" type="java.lang.String" column="ENTRY"/>-->
+            <!--</composite-element>-->
+        <!--</map>-->
+<!--V1 -->
+        <!--<list name="history" table="user_history">-->
+            <!--<key column="id"/>-->
+            <!--<list-index column="POSITION"/>&lt;!&ndash;ELEMETN Qui increment POS ++&ndash;&gt;-->
+            <!--<composite-element class="com.simpleprogram.UserHistory">-->
+                <!--<property name="entryTime" type="date" column="ENTRY_TIME"/>-->
+                <!--<property name="entry" type="java.lang.String" column="ENTRY"/>-->
+            <!--</composite-element>-->
+        <!--</list>-->
+        <!-- une set  de type liste SIMPLE -->
+        <!--<set name="history" table="user_history">-->
+            <!--<key column="id"/>-->
+            <!--<composite-element class="com.simpleprogram.UserHistory">-->
+                <!--<property name="entryTime" type="date" column="ENTRY_TIME"></property>-->
+                <!--<property name="entry" type="date" column="ENTRY"></property>-->
+            <!--</composite-element>-->
+        <!--</set>-->
+    </class>
+</hibernate-mapping>
