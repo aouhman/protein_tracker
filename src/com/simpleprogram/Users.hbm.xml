@@ -12,16 +12,8 @@
         <property name="name">
             <column name="name" sql-type="varchar(100)" length="100"/>
         </property>
-        <component name="proteinData">
 
-            <property name="total">
-                <column name="total" sql-type="int(11)"/>
-            </property>
-            <property name="goal">
-                <column name="goal" sql-type="int(11)"/>
-            </property>
-        </component>
-
+        <one-to-one name="proteinData" class="com.simpleprogram.ProteinData" cascade="save-update"/>
 
         <list name="history" table="user_history" inverse="true" cascade="save-update">
 

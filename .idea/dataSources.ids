@@ -13,67 +13,73 @@
       <schema id="1" name="protein_tracker"/>
       <table id="2" parent="1" name="user_history"/>
       <table id="3" parent="1" name="users"/>
-      <column id="4" parent="2" name="id">
+      <table id="4" parent="1" name="protein_data"/>
+      <column id="5" parent="2" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="5" parent="2" name="USER">
+      <column id="6" parent="2" name="user_id">
         <data-type>int(11)</data-type>
       </column>
-      <column id="6" parent="2" name="EnTRYTIME">
+      <column id="7" parent="2" name="EnTRYTIME">
         <data-type>datetime</data-type>
       </column>
-      <column id="7" parent="2" name="ENTRY">
+      <column id="8" parent="2" name="ENTRY">
         <data-type>varchar(255)</data-type>
-      </column>
-      <column id="8" parent="2" name="user_id">
-        <data-type>int(11)</data-type>
       </column>
       <column id="9" parent="2" name="POSITION">
         <data-type>int(11)</data-type>
       </column>
-      <index id="10" parent="2" name="FK_gnvoyoryjnom3n36622kdq42w">
-        <columns>USER</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="11" parent="2" name="FK_qqn41ds4eoiq01j551k0ff3gg">
+      <index id="10" parent="2" name="FK_qqn41ds4eoiq01j551k0ff3gg">
         <columns>user_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="12" parent="2" name="PRIMARY">
+      <key id="11" parent="2" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="13" parent="2" name="FK_gnvoyoryjnom3n36622kdq42w">
-        <columns>USER</columns>
-        <ref-key>~.users.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="14" parent="2" name="FK_qqn41ds4eoiq01j551k0ff3gg">
+      <foreign-key id="12" parent="2" name="FK_qqn41ds4eoiq01j551k0ff3gg">
         <columns>user_id</columns>
         <ref-key>~.users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="15" parent="3" name="id">
+      <column id="13" parent="3" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="16" parent="3" name="name">
+      <column id="14" parent="3" name="name">
         <data-type>varchar(100)</data-type>
       </column>
-      <column id="17" parent="3" name="total">
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="18" parent="3" name="goal">
-        <data-type>int(11)</data-type>
-      </column>
-      <key id="19" parent="3" name="PRIMARY">
+      <key id="15" parent="3" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
+      <column id="16" parent="4" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="17" parent="4" name="TOTAL">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="18" parent="4" name="GOAL">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="19" parent="4" name="FK_fn4p0aghscykjde8hdf93fq25">
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="20" parent="4" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="21" parent="4" name="FK_fn4p0aghscykjde8hdf93fq25">
+        <columns>id</columns>
+        <ref-key>~.users.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
     </database-model>
   </data-source>
 </component>

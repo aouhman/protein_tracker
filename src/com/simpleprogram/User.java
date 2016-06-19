@@ -9,6 +9,10 @@ public class User extends Object {
 
     private ProteinData proteinData = new ProteinData();
 
+    public User(){
+        setProteinData(new ProteinData());
+    }
+
 //V4    private Collection<UserHistory> history = new ArrayList<UserHistory>() ;
 //V2    private List<UserHistory> history = new ArrayList<UserHistory>() ;
 //V3    private Map<String,UserHistory> history = new HashMap<String,UserHistory>() ;
@@ -39,6 +43,7 @@ public class User extends Object {
 
     public void setProteinData(ProteinData proteinData) {
         this.proteinData = proteinData;
+        proteinData.setUser(this);
     }
 
 //V2    public List<UserHistory> getHistory() {
