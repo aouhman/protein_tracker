@@ -20,15 +20,10 @@
             <list-index column="POSITION"/>
             <one-to-many class="com.simpleprogram.UserHistory"/>
         </list>
-    <join table="user_goalAlert" optional="true">
-        <key column="user_id"></key>
-        <many-to-one name="goalAlert"
-        column="goalAlert_id"
-        not-null="true"
-        unique="true"
-        cascade="save-update"
-        />
-    </join>
+  <set name="goalAlerts" table="user_goalAlert" cascade="save-update">
+      <key column="user_id"/>
+      <many-to-many class="com.simpleprogram.GoalAlert" column="goalAlert_id"/>
+  </set>
         <!--V2-->
         <!--<map name="history" table="user_history">-->
             <!--<key column="id"/>-->

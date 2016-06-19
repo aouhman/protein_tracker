@@ -24,7 +24,8 @@ public class Program {
 //V3        user.getHistory().put("GL124",new UserHistory(new Date(),"Set the goal to 250"));
 //V4        user.getHistory().add(new UserHistory(new Date(),"Set the goal to 250"));
         user.addHistory(new UserHistory(new Date(), "Set the goal to 250"));
-        user.setGoalAlert(new GoalAlert("congratulations"));
+        user.getGoalAlerts().add(new GoalAlert("congratulations"));
+        user.getGoalAlerts().add(new GoalAlert("You did it!!!"));
         user.setProteinData(new ProteinData());
         session.save(user);
         session.getTransaction().commit();

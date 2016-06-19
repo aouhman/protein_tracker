@@ -8,15 +8,8 @@ public class User extends Object {
     private String name;
 
     private ProteinData proteinData = new ProteinData();
-    private GoalAlert goalAlert;
+    private Set<GoalAlert> goalAlerts = new HashSet<GoalAlert>();
 
-    public GoalAlert getGoalAlert() {
-        return goalAlert;
-    }
-
-    public void setGoalAlert(GoalAlert goalAlert) {
-        this.goalAlert = goalAlert;
-    }
 
     public User(){
         setProteinData(new ProteinData());
@@ -55,6 +48,13 @@ public class User extends Object {
         proteinData.setUser(this);
     }
 
+    public Set<GoalAlert> getGoalAlerts() {
+        return goalAlerts;
+    }
+
+    public void setGoalAlerts(Set<GoalAlert> goalAlerts) {
+        this.goalAlerts = goalAlerts;
+    }
 //V2    public List<UserHistory> getHistory() {
 //V3    public Map<String,UserHistory> getHistory() {
 //V4    public Collection<UserHistory> getHistory() {

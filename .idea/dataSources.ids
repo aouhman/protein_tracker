@@ -112,26 +112,18 @@
         <columns>user_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="32" parent="6" name="UK_q546vy8sk1uhg2t1kakbn736a">
-        <columns>goalAlert_id</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="33" parent="6" name="PRIMARY">
-        <columns>user_id</columns>
+      <key id="32" parent="6" name="PRIMARY">
+        <columns>user_id
+goalAlert_id</columns>
         <primary>1</primary>
       </key>
-      <key id="34" parent="6" name="UK_q546vy8sk1uhg2t1kakbn736a">
-        <columns>goalAlert_id</columns>
-        <underlying-index>UK_q546vy8sk1uhg2t1kakbn736a</underlying-index>
-      </key>
-      <foreign-key id="35" parent="6" name="FK_q546vy8sk1uhg2t1kakbn736a">
+      <foreign-key id="33" parent="6" name="FK_q546vy8sk1uhg2t1kakbn736a">
         <columns>goalAlert_id</columns>
         <ref-key>~.goal_alert.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="36" parent="6" name="FK_tpankqiuuqo6eec1gjykgmduq">
+      <foreign-key id="34" parent="6" name="FK_tpankqiuuqo6eec1gjykgmduq">
         <columns>user_id</columns>
         <ref-key>~.users.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
