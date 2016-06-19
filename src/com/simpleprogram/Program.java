@@ -18,10 +18,11 @@ public class Program {
 //V2        user.getHistory().add(new UserHistory(new Date(),"Set the goal to 250"));
 //V3        user.getHistory().put("GL123",new UserHistory(new Date(),"Set the name"));
 //V4        user.getHistory().add(new UserHistory(new Date(),"Set the name"));
-        user.getHistory().add(new UserHistory(new Date(),"Set the name"));
+        user.addHistory(new UserHistory(new Date(),"Set the name"));
         user.getProteinData().setGoal(250);
 //V3        user.getHistory().put("GL124",new UserHistory(new Date(),"Set the goal to 250"));
-        user.getHistory().add(new UserHistory(new Date(),"Set the goal to 250"));
+//V4        user.getHistory().add(new UserHistory(new Date(),"Set the goal to 250"));
+         user.addHistory(new UserHistory(new Date(),"Set the goal to 250"));
         session.save(user);
         session.getTransaction().commit();
         session.beginTransaction();
@@ -41,7 +42,8 @@ public class Program {
         
 //V2        user.getHistory().add(new UserHistory(new Date(),"add 50 protein"));
 //V3        user.getHistory().put("GL125",new UserHistory(new Date(),"add 50 protein"));
-        user.getHistory().add(new UserHistory(new Date(),"add 50 protein"));
+//V4        user.getHistory().add(new UserHistory(new Date(),"add 50 protein"));
+            user.addHistory(new UserHistory(new Date(),"add 50 protein"));
         session.getTransaction().commit();
 
         session.close();

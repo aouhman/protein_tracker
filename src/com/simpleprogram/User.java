@@ -55,5 +55,8 @@ public class User extends Object {
         this.history = history;
     }
 
-
+    public void addHistory(UserHistory historyItem){
+        historyItem.setUser(this);
+        history .add(historyItem);
+    }
 }

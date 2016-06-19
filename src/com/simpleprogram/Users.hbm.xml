@@ -23,17 +23,13 @@
         </component>
 
 
-        <idbag name="history" table="user_history">
+        <list name="history" table="user_history" inverse="true" cascade="save-update">
 
-            <collection-id type="int" column="id">
-                <generator class="increment"/>
-            </collection-id>
+
             <key column="user_id"/>
-            <composite-element class="com.simpleprogram.UserHistory">
-                <property name="entryTime" type="date" column="ENTRY_TIME"/>
-                <property name="entry" type="java.lang.String" column="ENTRY"/>
-            </composite-element>
-        </idbag>
+            <list-index column="POSITION"/>
+            <one-to-many class="com.simpleprogram.UserHistory"/>
+        </list>
 
         <!--V2-->
         <!--<map name="history" table="user_history">-->
