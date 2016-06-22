@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.Date;
@@ -27,12 +28,15 @@ public class Program {
                                     .add(Restrictions.or(
                                             Restrictions.eq("name","joe"),
                                             Restrictions.eq("name","Bob")
-                                    ));
+                                    )).setProjection(Projections.projectionList()
+                                      .add(Projections.property("id"))
+                                      .add(Projections.property("name")))
+                ;
 
 
-        List<User> users  = criteria.list();
-        for (User user :users) {
-            System.out.println(user.getName());
+        List<Object[]> results = criteria.list();
+        for (Object[] o :results) {
+            System.out.println(o.toString());
         }
         session.getTransaction().commit();
         session.close();
