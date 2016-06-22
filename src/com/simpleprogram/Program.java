@@ -17,13 +17,13 @@ public class Program {
         Session session = HibernateUtilities.getSessionFactory().openSession();
         session.beginTransaction();
 
-      Query query =  session.getNamedQuery("com.simpleprogram.GoalAlert.allGoalAlerts");
+      Query query =  session.createQuery("select new com.simpleprogram.UserTotal(user.name,user.proteinData.total) from User  user");
 //        Query query = session.createQuery("from GoalAlert")
 //                               .setFirstResult(2)
 //                               .setMaxResults(1);
-        List<GoalAlert> alerts = query.list();
-        for (GoalAlert alert : alerts) {
-            System.out.println(alert.getMessage());
+        List<UserTotal> userTotals = query.list();
+        for (UserTotal ut : userTotals) {
+            System.out.println(ut.getName()+":" + ut.getTotal());
         }
         session.getTransaction().commit();
         session.close();
