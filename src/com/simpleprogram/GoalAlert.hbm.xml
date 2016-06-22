@@ -14,6 +14,8 @@
         <property name="message" type="java.lang.String">
             <column name="TOTAL"/>
         </property>
-
+<query name="allGoalAlerts">
+    <![CDATA[FROM GoalAlert ]]>
+</query>
     </class>
 </hibernate-mapping>

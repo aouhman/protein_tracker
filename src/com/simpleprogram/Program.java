@@ -17,12 +17,13 @@ public class Program {
         Session session = HibernateUtilities.getSessionFactory().openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("select user.goalAlerts from User  user where user.name =:name ")
-                .setString("name","joe");
-        List<User> users = query.list();
-        for (User user :
-                users) {
-            System.out.println(user.getName());
+      Query query =  session.getNamedQuery("com.simpleprogram.GoalAlert.allGoalAlerts");
+//        Query query = session.createQuery("from GoalAlert")
+//                               .setFirstResult(2)
+//                               .setMaxResults(1);
+        List<GoalAlert> alerts = query.list();
+        for (GoalAlert alert : alerts) {
+            System.out.println(alert.getMessage());
         }
         session.getTransaction().commit();
         session.close();

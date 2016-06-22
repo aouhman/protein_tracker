@@ -7,6 +7,9 @@ public class GoalAlert {
     private int id;
     private String message;
 
+    public GoalAlert() {
+    }
+
     public int getId() {
         return id;
     }
