@@ -17,7 +17,8 @@ public class Program {
         Session session = HibernateUtilities.getSessionFactory().openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("from User ");
+        Query query = session.createQuery("select user.goalAlerts from User  user where user.name =:name ")
+                .setString("name","joe");
         List<User> users = query.list();
         for (User user :
                 users) {
