@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,11 @@ public class Program {
 //        Query query = session.createQuery("from GoalAlert")
 //                               .setFirstResult(2)
 //                               .setMaxResults(1);
-        Criteria criteria = session.createCriteria(User.class);
+        Criteria criteria = session.createCriteria(User.class)
+                                    .add(Restrictions.or(
+                                            Restrictions.eq("name","joe"),
+                                            Restrictions.eq("name","Bob")
+                                    ));
 
 
         List<User> users  = criteria.list();
