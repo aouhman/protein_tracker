@@ -1,5 +1,6 @@
 package com.simpleprogram;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,13 +18,16 @@ public class Program {
         Session session = HibernateUtilities.getSessionFactory().openSession();
         session.beginTransaction();
 
-      Query query =  session.createQuery("select new com.simpleprogram.UserTotal(user.name,user.proteinData.total) from User  user");
+//      Query query =  session.createQuery("select new com.simpleprogram.UserTotal(user.name,user.proteinData.total) from User  user");
 //        Query query = session.createQuery("from GoalAlert")
 //                               .setFirstResult(2)
 //                               .setMaxResults(1);
-        List<UserTotal> userTotals = query.list();
-        for (UserTotal ut : userTotals) {
-            System.out.println(ut.getName()+":" + ut.getTotal());
+        Criteria criteria = session.createCriteria(User.class);
+
+
+        List<User> users  = criteria.list();
+        for (User user :users) {
+            System.out.println(user.getName());
         }
         session.getTransaction().commit();
         session.close();
