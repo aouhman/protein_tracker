@@ -25,21 +25,17 @@ public class Program {
 //                               .setFirstResult(2)
 //                               .setMaxResults(1);
         Criteria criteria = session.createCriteria(User.class)
-                                    .createAlias("proteinData","pd")
                                     .add(Restrictions.or(
-//                                            Restrictions.eq("name","joe"),
+                                            Restrictions.eq("name","joe"),
                                             Restrictions.eq("name","Bob")
-                                    )).setProjection(Projections.property("pd.total"));
-
-
-
+                                    ));
 
 
 
         List<User> users  = criteria.list();
-
-
-            System.out.print(users);
+        for (User user :users) {
+            System.out.println(user.getName());
+        }
         session.getTransaction().commit();
         session.close();
         HibernateUtilities.getSessionFactory().close();

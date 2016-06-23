@@ -10,6 +10,9 @@
         <property name="hibernate.show_sql">true</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+
         <mapping resource="com/simpleprogram/Users.hbm.xml"/>
         <mapping resource="com/simpleprogram/UsersHistory.hbm.xml"/>
         <mapping resource="com/simpleprogram/ProteinData.hbm.xml"/>
