@@ -1,9 +1,6 @@
 package com.simpleprogram;
 
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -32,15 +29,20 @@ public class Program {
 //
 
         Criteria criteria = session.createCriteria(User.class);
+        ScrollableResults users = criteria.setCacheMode(CacheMode.IGNORE).scroll();
 
-
-        List<User> users  = criteria.list();
-
-        for (User user :users) {
+        int count = 0;
+        while (users.next()) {
+            User user = (User) users.get(0);
+            user.setProteinData(new ProteinData());
+            session.save(user);
+            if(++count % 2 == 0){
+                session.flush();
+                session.clear();
+            }
             System.out.println(user.getName());
         }
-        Query query = session.createQuery("update ProteinData  pd set pd.goal = 0");
-        query.executeUpdate();
+
         session.getTransaction().commit();
         session.close();
         HibernateUtilities.getSessionFactory().close();
