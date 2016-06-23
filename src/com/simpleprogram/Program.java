@@ -24,18 +24,23 @@ public class Program {
 //        Query query = session.createQuery("from GoalAlert")
 //                               .setFirstResult(2)
 //                               .setMaxResults(1);
-        Criteria criteria = session.createCriteria(User.class)
-                                    .add(Restrictions.or(
-                                            Restrictions.eq("name","joe"),
-                                            Restrictions.eq("name","Bob")
-                                    ));
+//        Criteria criteria = session.createCriteria(User.class)
+//                                    .add(Restrictions.or(
+//                                            Restrictions.eq("name","joe"),
+//                                            Restrictions.eq("name","Bob")
+//                                    ));
+//
 
+        Criteria criteria = session.createCriteria(User.class);
 
 
         List<User> users  = criteria.list();
+
         for (User user :users) {
             System.out.println(user.getName());
         }
+        Query query = session.createQuery("update ProteinData  pd set pd.goal = 0");
+        query.executeUpdate();
         session.getTransaction().commit();
         session.close();
         HibernateUtilities.getSessionFactory().close();
