@@ -28,21 +28,11 @@ public class Program {
 //                                    ));
 //
 
-        Criteria criteria = session.createCriteria(User.class);
-        ScrollableResults users = criteria.setCacheMode(CacheMode.IGNORE).scroll();
-
-        int count = 0;
-        while (users.next()) {
-            User user = (User) users.get(0);
-            user.setProteinData(new ProteinData());
-            session.save(user);
-            if(++count % 2 == 0){
-                session.flush();
-                session.clear();
-            }
-            System.out.println(user.getName());
+        Query query = session.createSQLQuery("select * from users").addEntity(User.class);
+        List<User> users = query.list();
+        for (User user: users) {
+          System.out.println(user.getName());
         }
-
         session.getTransaction().commit();
         session.close();
         HibernateUtilities.getSessionFactory().close();
