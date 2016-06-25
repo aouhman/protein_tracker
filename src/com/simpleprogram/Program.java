@@ -15,6 +15,7 @@ public class Program {
         System.out.println("Hello world");
         PopulateSampleData();
         Session session = HibernateUtilities.getSessionFactory().openSession();
+        session.enableFilter("nameFilter").setParameter("name","J%");
         session.beginTransaction();
 
 //      Query query =  session.createQuery("select new com.simpleprogram.UserTotal(user.name,user.proteinData.total) from User  user");
@@ -28,7 +29,7 @@ public class Program {
 //                                    ));
 //
 
-        Query query = session.createSQLQuery("select * from users").addEntity(User.class);
+        Query query = session.createQuery("from User");
         List<User> users = query.list();
         for (User user: users) {
           System.out.println(user.getName());

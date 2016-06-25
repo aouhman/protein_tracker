@@ -2,9 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
 <hibernate-mapping>
 
-    <class name="com.simpleprogram.User" table="users">
+    <filter-def name="nameFilter" condition="name like :name">
+        <filter-param name="name" type="java.lang.String"/>
+    </filter-def>
+    <class name="com.simpleprogram.User" table="users" >
+        <!--<cache usage="read-write"/>-->
         <id name="id">
             <column name="id" sql-type="int(11)" />
             <generator class="identity"/>
@@ -24,6 +29,7 @@
       <key column="user_id"/>
       <many-to-many class="com.simpleprogram.GoalAlert" column="goalAlert_id"/>
   </set>
+        <filter name="nameFilter"/>
         <!--V2-->
         <!--<map name="history" table="user_history">-->
             <!--<key column="id"/>-->
@@ -51,4 +57,8 @@
             <!--</composite-element>-->
         <!--</set>-->
     </class>
+
+
+
+
 </hibernate-mapping>
